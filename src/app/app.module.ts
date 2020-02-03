@@ -1,33 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { translationChunksConfig, translations } from '@spartacus/assets';
+import { ConfigModule } from '@spartacus/core';
 import { CmsLibModule, StorefrontModule } from '@spartacus/storefront';
+import { AppConfig } from './app-config';
 import { AppComponent } from './app.component';
+import { cmsSampleData } from './sample-data/cms-sample-data';
+import { sampleLayoutConfig } from './sample-layout/layout';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    StorefrontModule.withConfig({
-      backend: {
-        occ: {
-          baseUrl:
-            'https://storefront.c39j2-walkersde1-d4-public.model-t.cc.commerce.ondemand.com',
-        },
-      },
-      context: {
-        baseSite: ['electronics-spa'],
-      },
-      i18n: {
-        resources: translations,
-        chunks: translationChunksConfig,
-        fallbackLang: 'en',
-      },
-      features: {
-        level: '1.4',
-      },
-    }),
+
     CmsLibModule,
+
+    StorefrontModule.withConfig(AppConfig),
+    ConfigModule.withConfig(sampleLayoutConfig),
+    ConfigModule.withConfigFactory(cmsSampleData),
   ],
   providers: [],
   bootstrap: [AppComponent],

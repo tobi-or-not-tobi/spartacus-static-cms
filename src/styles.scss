@@ -1,3 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import '~@spartacus/styles/index';
+
+header .header {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+  }
+
+  .headerTop {
+    > * {
+      flex: none;
+    }
+
+    cx-site-context-selector:last-of-type {
+      margin-inline-end: auto;
+    }
+  }
+
+  .headerMiddle {
+    align-items: center;
+
+    > * {
+      display: flex;
+      // as longs as we inherit the global component templates, we need
+      // to initialize the flex box
+      flex: initial;
+    }
+
+    cx-searchbox {
+      margin: auto;
+    }
+  }
+}
